@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="title">即時顯示 firebase 中的資料</h1>
+    <h3 id="content"></h1>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: null,
+            authDomain: "testproject-a9962.firebaseapp.com",
+            databaseURL: "https://testproject-a9962.firebaseio.com",
+            projectId: "testproject-a9962",
+            storageBucket: "testproject-a9962.appspot.com",
+            messagingSenderId: null,
+            appId: "1:990304960388:web:d9b712d2ac80cbba"
+        }
+        // Initialize Fire
+        firebase.initializeApp(firebaseConfig)
+        var ref = firebase.database().ref()
+        ref.on('value', function(snapshot) {
+            var path = document.getElementById('content')
+            // console.log(path)
+            path.textContent = JSON.stringify(snapshot.val(), null, 3)
+        })
+    </script>
+</body>
+</html>

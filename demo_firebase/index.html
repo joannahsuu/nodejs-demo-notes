@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1>HELLO</h1>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-app.js"></script>
+
+    <!-- TODO: Add SDKs for Firebase products that you want to use
+    https://firebase.google.com/docs/web/setup#config-web-app -->
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase-database.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: null,
+            authDomain: "testproject-a9962.firebaseapp.com",
+            databaseURL: "https://testproject-a9962.firebaseio.com",
+            projectId: "testproject-a9962",
+            storageBucket: "testproject-a9962.appspot.com",
+            messagingSenderId: null,
+            appId: "1:990304960388:web:d9b712d2ac80cbba"
+        }
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        // ref() 尋找資料庫路徑
+        // set() 新增資料
+        // firebase.database().ref().set('hi')
+        // firebase.database().ref().set({home: 'TW', place: 'TPE'})
+
+        // firebase 全部為物件格式，不能為陣列格式
+
+        // =========================================================================
+        // 一個班級有兩個學生
+        // var data = null
+        // data = {
+        //     student1: {
+        //         name: 'Tom',
+        //         num: '1',
+        //     },
+        //     student2: {
+        //         name: 'John',
+        //         num: '2',
+        //     }
+        // }
+        // firebase.database().ref().set(data)
+        // 修改 student1 的 name 為 bob
+        // firebase.database().ref('student1/name').set('bob')
+
+        // =========================================================================
+        // 餐廳、電商資料庫
+        var data = null
+        data = {
+            food: {
+                coke: {
+                    price: 30,
+                    num: 1,
+                },
+                fires: {
+                    price: 50,
+                    num: 3,
+                },
+            },
+            order: {
+                1: {
+                    coke: 2,
+                },
+                2: {
+                    coke: 2,
+                    fires: 5,
+                },
+            },
+        }
+        firebase.database().ref().set(data)
+        // 修改可樂的價格
+        // firebase.database().ref('food/coke/price').set(80)
+    </script>
+</body>
+</html>

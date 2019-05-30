@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <h1 id="title">todo list</h1>
+    <input id="txt" type="text" placeholder="請輸入內容...">
+    <input id="btn" type="button" value="送出">
+    <ul id="list"></ul>
+    <!-- The core Firebase JS SDK is always required and must be listed first -->
+    <script src="https://www.gstatic.com/firebasejs/3.1.0/firebase.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        var firebaseConfig = {
+            apiKey: null,
+            authDomain: "testproject-a9962.firebaseapp.com",
+            databaseURL: "https://testproject-a9962.firebaseio.com",
+            projectId: "testproject-a9962",
+            storageBucket: "testproject-a9962.appspot.com",
+            messagingSenderId: null,
+            appId: "1:990304960388:web:d9b712d2ac80cbba"
+        }
+        // Initialize Fire
+        firebase.initializeApp(firebaseConfig)
+
+        var txt = document.getElementById('txt')
+        var btn = document.getElementById('btn')
+        var list = document.getElementById('list')
+        // todos
+        var todos = firebase.database().ref('todos')
+
+        // 點擊送出，寫入資料庫
+        btn.addEventListener('click', function(e) {
+            // console.log(txt.value)
+            todos.push({ content: txt.value})
+        })
+
+        // 讀取資料庫，顯示資料
+        todos.on('value', function(snapshot){
+            console.log(snapshot.val())
+            var str = ''
+            var data = snapshot.val()
+            for( var item in data) {
+                // console.log(data[item].content)
+                str+= `<li data-key='${item}' onclick="remove('${item}')">${data[item].content}</li>`
+            }
+            list.innerHTML = str
+        })
+
+        function remove(data) {
+            console.log('remove', data)
+            todos.child(data).remove()
+        }
+    </script>
+</body>
+</html>
