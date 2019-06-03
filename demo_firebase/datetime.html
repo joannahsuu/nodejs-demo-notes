@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+</head>
+<body>
+    <h2>時間格式 new Date()</h2>
+    <p>開始時間：</p>
+    <input type="date" name="" id="time">
+    <input type="button" id="send" value="送出">
+    <script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
+    <script>
+    var config = {
+        //請輸入config
+        apiKey: null,
+        authDomain: "testproject-a9962.firebaseapp.com",
+        databaseURL: "https://testproject-a9962.firebaseio.com",
+        projectId: "testproject-a9962",
+        storageBucket: "testproject-a9962.appspot.com",
+        messagingSenderId: null,
+        appId: "1:990304960388:web:d9b712d2ac80cbba"
+    };
+    firebase.initializeApp(config)
+
+    // new Date() 抓取當下時間
+    let time = new Date()
+    // console.log(time)
+    // console.log(time.getFullYear())
+    // console.log(time.getMonth())
+    // console.log(time.getDay())
+    // console.log(time.getHours())
+    // console.log(time.getMinutes())
+    // console.log(time.getSeconds())
+    // console.log(time.getMilliseconds())
+
+    // =========================================
+    let datetime = document.getElementById('time')
+    let sendBtn = document.getElementById('send')
+
+    sendBtn.addEventListener('click', (e) => {
+        console.log(datetime.value)
+        let now = new Date(datetime.value)
+        console.log(now)
+        let starttime = now.setHours(0, 0, 0, 0)
+        console.log(starttime)
+        let endtime = now.setHours(23, 59, 59, 999)
+        console.log(endtime)
+    })
+    </script>
+</body>
+</html>

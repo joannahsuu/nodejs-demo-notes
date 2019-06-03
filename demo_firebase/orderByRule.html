@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+
+</head>
+<body>
+    <script src="https://www.gstatic.com/firebasejs/4.6.1/firebase.js"></script>
+    <script>
+    var config = {
+        //請輸入config
+        apiKey: null,
+        authDomain: "testproject-a9962.firebaseapp.com",
+        databaseURL: "https://testproject-a9962.firebaseio.com",
+        projectId: "testproject-a9962",
+        storageBucket: "testproject-a9962.appspot.com",
+        messagingSenderId: null,
+        appId: "1:990304960388:web:d9b712d2ac80cbba"
+    };
+    firebase.initializeApp(config);
+    // 排序
+    // 由輕到重
+    var people = {
+        "mike": {
+          "height" : 4,
+          "length" : 12.5,
+          "weight": 5000
+        },
+        "casper": {
+          "height" : 3,
+          "length" : 9,
+          "weight" : 2500
+        },
+        "bob": {
+          "height": "dalse",
+          "length" : false,
+          "weight" : 2500
+        },
+        "john": {
+          "height" : true,
+          "length" : 9,
+          "weight" : 4000
+        }
+        ,
+        "josh": {
+          "height" : false,
+          "length" : 9,
+          "weight" : 2500
+        },
+        'boss':{
+          "length": 3
+        },
+        'frank':{
+          height:{'aaa':1}
+        }
+      };
+    firebase.database().ref('people').set(people);
+    var peopleRef = firebase.database().ref('people');
+    // ==================================================
+    // 路徑>>排序('屬性')>>讀取> forEach 依序撈出資料
+    // startAt() 過濾
+    // endAt() 過濾
+    // equalTo() 相等，可作為查詢（關鍵字搜尋）
+    // limitToFirst 限制筆數，撈出的第一筆
+    // limitToLast 限制筆數，撈出的最後一筆
+    peopleRef.orderByChild('weight').startAt(3500).limitToLast(1).once('value',function(snapshot){
+        console.log(snapshot.val());
+        snapshot.forEach(function(item){
+            // console.log(item.key);
+            console.log(item.val());
+        })
+    })
+
+    // ==================================================
+    </script>
+</body>
+</html>
