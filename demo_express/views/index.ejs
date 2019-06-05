@@ -1,0 +1,36 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    if/else 判斷
+    <% if(show) {%>
+        <span>資料有呈現</span>
+    <% }%>
+    html 標籤渲染
+    <%- title %>
+    字串渲染
+    <h2><%= boss %></h2>
+    陣列
+    <ul>
+    <%for(var i=0; i<course.length; i++) { %>
+        <li><%-course[i]%></li>
+    <%}%>
+    </ul>
+</body>
+</html> -->
+<% layout('layout') %>
+    <% if(show) {%>
+    <span>資料有呈現 with layout</span>
+    <% }%>
+    <%- title %>
+    <h2><%= boss %></h2>
+    <ul>
+    <%for(var i=0; i<course.length; i++) { %>
+        <li><%-course[i]%></li>
+    <%}%>
+    </ul>
